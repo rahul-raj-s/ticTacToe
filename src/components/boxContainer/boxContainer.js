@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect } from "react";
 import { boxes, intialStatus } from "../../loader";
 import gameChecker from "../../gameChecker";
-import { Button } from "react-bootstrap";
 import { Reload } from "react-bytesize-icons";
 import Box from "../box";
 import style from "./boxContainer.module.css";
@@ -22,7 +21,8 @@ function BoxContainer({ players, ...props }) {
     setStatus(prevStatus => ({
       ...prevStatus,
       [id]: prevStatus.term,
-      term: prevStatus.term === "O" ? "X" : "O"
+      term: prevStatus.term === "O" ? "X" : "O",
+      steps: prevStatus.steps + 1
     }));
   };
 
@@ -50,8 +50,9 @@ function BoxContainer({ players, ...props }) {
       ) : (
         <div className={style.gameDetails}>
           <span className={style.userInfo}>
-            {status.term === "O" ? player1 : player2}
-            {" your turn..."}
+            {status.steps >= 9
+              ? "Game Draw"
+              : `${status.term === "O" ? player1 : player2} your turn...`}
           </span>
 
           <div className={style.reload} onClick={restartGame}>
