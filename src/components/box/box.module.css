@@ -2,7 +2,7 @@
   display: inline-flex;
   height: 100px;
   width: 100px;
-  border: 2px solid rgb(47, 8, 8);
+  border: 2px solid #3d8c9c;
   justify-content: center;
   flex-flow: column;
   text-align: center;
@@ -47,10 +47,11 @@
 .o {
   color: greenyellow;
 }
+
 .box:hover {
   box-shadow: rgb(12, 165, 212) 2px solid;
 }
 .final {
   font-size: 80px;
-  background-color: rgb(25, 204, 159);
+  background-color: #489fb0;
 }

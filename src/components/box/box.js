@@ -7,11 +7,11 @@ function Box(props) {
   return (
     <div
       className={[style.box, additionalClass, activeClass].join(" ")}
-      onClick={() =>
+      onClick={() => {
         props.term.length === 0 &&
-        !props.gameLock &&
-        props.handleClick(props.id)
-      }
+          !props.gameLock &&
+          props.handleClick(props.id);
+      }}
     >
       {props.term}
     </div>
