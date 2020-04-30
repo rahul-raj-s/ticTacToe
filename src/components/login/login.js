@@ -1,45 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPlayer1, setPlayer2 } from "../../redux/tictac.action";
+import commonStyle from "../../commonStyle.module.css";
 import style from "./login.module.css";
+import { changeRoute } from "../router/router.action";
 
-function Login({ mode, ...props }) {
-  const [player1, setPlayer1] = useState("");
-  const [player2, setPlayer2] = useState(mode === "1" ? "Computer" : "");
+function Login(props) {
+  const { player1, player2, mode } = useSelector(
+    (state) => state.TictacReducer
+  );
+  const dispatch = useDispatch();
 
-  const handlePlayer1 = event => {
-    setPlayer1(event.target.value);
+  useEffect(() => {
+    if (mode === "PC") {
+      dispatch(setPlayer2("Computer"));
+    }
+  }, []);
+
+  const handlePlayer1 = (event) => {
+    dispatch(setPlayer1(event.target.value));
+  };
+  const handlePlayer2 = (event) => {
+    dispatch(setPlayer2(event.target.value));
   };
 
-  const handlePlayer2 = event => {
-    if (mode !== "1") {
-      setPlayer2(event.target.value);
+  const setGame = () => {
+    if (!player1) {
+      dispatch(setPlayer1("Player1"));
+    }
+    if (!player2) {
+      dispatch(setPlayer2("Player2"));
+    }
+    if (mode === "PC") {
+      dispatch(changeRoute("level"));
+    } else if (mode === "NM") {
+      dispatch(changeRoute("game"));
+    } else if (mode === "OP") {
+      dispatch(changeRoute("onlineoptions"));
     }
   };
-
   return (
     <div className={style.loginContainer}>
-      <label>First Player</label>
+      <label className={commonStyle.label}>
+        {mode === "OP" || mode === "PC" ? "Enter your name" : "First Player"}
+      </label>
       <input
-        className={style.input}
+        className={commonStyle.input}
         value={player1}
-        onChange={event => handlePlayer1(event)}
+        onChange={(event) => handlePlayer1(event)}
       />
-      <label>Second Player</label>
-      {mode === "1" ? (
-        <div className={style.input}>{player2}</div>
-      ) : (
-        <input
-          className={style.input}
-          value={player2}
-          onChange={event => handlePlayer2(event)}
-        />
+
+      {mode === "NM" && (
+        <>
+          <label className={commonStyle.label}>Second Player</label>
+          <input
+            className={commonStyle.input}
+            value={player2}
+            onChange={(event) => handlePlayer2(event)}
+            readOnly={mode === "1"}
+          />
+        </>
       )}
-      <button
-        onClick={() =>
-          props.onLogin({ player1: player1, player2: player2, mode: { mode } })
-        }
-        className={style.startButton}
-      >
-        START
+      <button onClick={setGame} variant="info" className={commonStyle.btn}>
+        {mode === "OP" || mode === "PC" ? "Next" : "Start"}
       </button>
     </div>
   );

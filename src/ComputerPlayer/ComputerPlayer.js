@@ -54,6 +54,7 @@ function computerPlayer(status, steps, level) {
   let nextMove;
 
   if (steps === 1 && level === "high") {
+    console.log("takingFirst move");
     if (status[5] === "") {
       nextMove = 5;
     } else {
@@ -61,12 +62,15 @@ function computerPlayer(status, steps, level) {
       nextMove = corners[cornerIndex];
     }
   } else if (steps === 3 && level === "high") {
+    console.log("taking Third Move");
     let suggest = _nextPlayerWinDetector(status, status.opponentsMove);
     if (suggest) {
       nextMove = suggest;
     } else {
       nextMove = _randomMove(status);
     }
+    console.log(status);
+    console.log(suggest);
   } else {
     let suggest = _nextPlayerWinDetector(status, status.computersMove); // check computer's winning chances
     if (!suggest) {

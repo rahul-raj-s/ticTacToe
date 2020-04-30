@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Anton&display=swap");
+.waitingRoomCotainer {
+  height: 90vh;
+  width: 90vw;
+  margin: auto;
+  max-width: 350px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+.roomCodeCotainer {
+  border: 2px solid red;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+.waitingPlayerContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Anton", sans-serif;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #42dffa;
+}
+.vsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  font-family: "Anton", sans-serif;
+  color: #ffffff;
+  font-size: 1.6em;
+  background-color: #4dc767;
+}
+.startGameBtn {
+  height: 50px;
+  text-align: center;
+  font-size: 2em;
+  background-color: white;
+  border-radius: 10px;
+  background-color: rgb(72, 159, 176);
+  color: #fff;
+  border: none;
+}
+.startGameBtn:active {
+  border: none;
+}
+.textarea {
+  outline: none;
+  text-align: center;
+  width: 120px;
+  background-color: #4dc767;
+  border: none;
+}

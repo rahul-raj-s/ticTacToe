@@ -1,47 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 .loginContainer {
-  color: #fff;
   font-size: 1.5em;
-  display: flex;
-  margin: auto;
-  padding: 20px;
-  height: 100vh;
-  width: 100vw;
-  max-width: 400px;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-family: "Abril Fatface";
-  background-color: rgb(72, 159, 176);
-}
-.input {
+  height: 100%;
   width: 100%;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 20px;
-  padding: 0 20px;
-  color: rgb(18, 53, 209);
-  background-color: #fff;
-  z-index: 1;
-  text-transform: uppercase;
-}
-.input:focus {
-  outline: none;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(104, 38, 38, 0.19);
-  margin-bottom: 17px;
-}
-.startButton {
-  height: 50px;
-  text-align: center;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 16px 0 rgba(4, 54, 70, 0.2),
-    0 6px 20px 0 rgba(104, 38, 38, 0.19);
-  color: rgb(72, 159, 176);
-}
-.startButton:hover {
-  background-color: rgb(72, 159, 176);
-  color: #fff;
+  font-family: "Abril Fatface";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

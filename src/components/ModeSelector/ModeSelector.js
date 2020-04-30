@@ -1,53 +1,63 @@
-import React, { useState } from "react";
-import { Desktop, User } from "react-bytesize-icons";
+import React, { useEffect, useState } from "react";
+import {
+  PlayOnline,
+  ErrorReport,
+  PlaywithComputer,
+  HappyTogether,
+  Background,
+} from "../../icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setMode } from "../../redux/tictac.action";
+import Poster from "../poster";
+import { changeRoute } from "../router/router.action";
 import style from "./ModeSelector.module.css";
 
-function Poster({ mode, icon, onClick }) {
+function ModeSelector(props) {
+  const dispatch = useDispatch();
+  const { mode } = useSelector((state) => state.TictacReducer);
+  const [loadingScreen, setLoadingScreen] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoadingScreen(false), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (mode) {
+      dispatch(changeRoute("login"));
+    }
+  }, [mode]);
+
   return (
-    <div className={style.poster} onClick={onClick}>
-      {icon}
-      <div className={style.modeName}>{mode}</div>
-    </div>
-  );
-}
-function LevelSelector({ modeChanger }) {
-  return (
-    <div className={style.poster}>
-      <span className={style.level} onClick={() => modeChanger("1", "low")}>
-        Easy
-      </span>
-      <span className={style.level} onClick={() => modeChanger("1", "high")}>
-        Hard
-      </span>
-    </div>
-  );
-}
-function ModeSelector({ modeChanger }) {
-  const [level, setLevel] = useState(false);
-  return (
-    <div className={style.modeContainer}>
-      {level ? (
-        <LevelSelector modeChanger={modeChanger} />
+    <>
+      {loadingScreen ? (
+        <div className={style.loader}>
+          <img src={Background} alt="" className={style.bgImg} />
+          <p>Loading...</p>
+        </div>
       ) : (
-        <>
+        <div className={style.modeContainer}>
           <Poster
             mode="Play with Computer"
-            icon={<Desktop height="200px" width="200px" color="blue" />}
-            onClick={() => setLevel(true)}
+            icon={<img src={PlaywithComputer} className={style.icon} alt="" />}
+            onClick={() => dispatch(setMode("PC"))}
           />
           <Poster
             mode="Happy Together"
-            icon={
-              <div className={style.multiUserIcon}>
-                <User height="150px" width="100px" color="blue" />
-                <User height="150px" width="100px" color="blue" />
-              </div>
-            }
-            onClick={() => modeChanger("2", "low")}
+            icon={<img src={HappyTogether} className={style.icon} alt="" />}
+            onClick={() => dispatch(setMode("NM"))}
           />
-        </>
+          <Poster
+            mode="Online Player"
+            icon={<img src={PlayOnline} alt="" className={style.icon} />}
+            onClick={() => dispatch(setMode("OP"))}
+          />
+          <Poster
+            icon={<img src={ErrorReport} alt="" className={style.icon} />}
+            mode="Report Error"
+          />
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
