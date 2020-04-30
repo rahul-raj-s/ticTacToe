@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ac78b067e413e3f3c1062973c54c8eb9",
+    "revision": "ae03fa13c72f112cfbac251925389438",
     "url": "/game1/index.html"
   },
   {
-    "revision": "dc742c8795886195c5c5",
+    "revision": "de96bce31ea192524cf5",
     "url": "/game1/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "ad65501ce4670742cc8d",
-    "url": "/game1/static/css/main.0f359f37.chunk.css"
+    "revision": "9fc126a0bdc675968006",
+    "url": "/game1/static/css/main.79f244a2.chunk.css"
   },
   {
-    "revision": "dc742c8795886195c5c5",
-    "url": "/game1/static/js/2.f8239ed0.chunk.js"
+    "revision": "de96bce31ea192524cf5",
+    "url": "/game1/static/js/2.221fd9fa.chunk.js"
   },
   {
     "revision": "88a28bf9811004a7250f8b652924c27d",
-    "url": "/game1/static/js/2.f8239ed0.chunk.js.LICENSE.txt"
+    "url": "/game1/static/js/2.221fd9fa.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ad65501ce4670742cc8d",
-    "url": "/game1/static/js/main.197b12f2.chunk.js"
+    "revision": "9fc126a0bdc675968006",
+    "url": "/game1/static/js/main.0dd2e245.chunk.js"
   },
   {
     "revision": "edec6057d97305a5888b",
@@ -38,5 +38,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6c9436c1f505e9e8e9c0dad202504522",
     "url": "/game1/static/media/error.6c9436c1.png"
+  },
+  {
+    "revision": "5348ae3beac74f09e560d10e92291c3f",
+    "url": "/game1/static/media/game.5348ae3b.png"
   }
 ]);

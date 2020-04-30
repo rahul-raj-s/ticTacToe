@@ -1,28 +1,29 @@
 {
   "files": {
-    "main.css": "/game1/static/css/main.0f359f37.chunk.css",
-    "main.js": "/game1/static/js/main.197b12f2.chunk.js",
-    "main.js.map": "/game1/static/js/main.197b12f2.chunk.js.map",
+    "main.css": "/game1/static/css/main.79f244a2.chunk.css",
+    "main.js": "/game1/static/js/main.0dd2e245.chunk.js",
+    "main.js.map": "/game1/static/js/main.0dd2e245.chunk.js.map",
     "runtime-main.js": "/game1/static/js/runtime-main.e3e546ce.js",
     "runtime-main.js.map": "/game1/static/js/runtime-main.e3e546ce.js.map",
     "static/css/2.de424728.chunk.css": "/game1/static/css/2.de424728.chunk.css",
-    "static/js/2.f8239ed0.chunk.js": "/game1/static/js/2.f8239ed0.chunk.js",
-    "static/js/2.f8239ed0.chunk.js.map": "/game1/static/js/2.f8239ed0.chunk.js.map",
+    "static/js/2.221fd9fa.chunk.js": "/game1/static/js/2.221fd9fa.chunk.js",
+    "static/js/2.221fd9fa.chunk.js.map": "/game1/static/js/2.221fd9fa.chunk.js.map",
     "index.html": "/game1/index.html",
-    "precache-manifest.d9db2b7f8b42997f2608a6b64874aaa8.js": "/game1/precache-manifest.d9db2b7f8b42997f2608a6b64874aaa8.js",
+    "precache-manifest.34612ffa34c41f507fbf9710e7f74393.js": "/game1/precache-manifest.34612ffa34c41f507fbf9710e7f74393.js",
     "service-worker.js": "/game1/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/game1/static/css/2.de424728.chunk.css.map",
-    "static/css/main.0f359f37.chunk.css.map": "/game1/static/css/main.0f359f37.chunk.css.map",
-    "static/js/2.f8239ed0.chunk.js.LICENSE.txt": "/game1/static/js/2.f8239ed0.chunk.js.LICENSE.txt",
+    "static/css/main.79f244a2.chunk.css.map": "/game1/static/css/main.79f244a2.chunk.css.map",
+    "static/js/2.221fd9fa.chunk.js.LICENSE.txt": "/game1/static/js/2.221fd9fa.chunk.js.LICENSE.txt",
     "static/media/computer.png": "/game1/static/media/computer.feb9406b.png",
     "static/media/connection.png": "/game1/static/media/connection.ad58a234.png",
-    "static/media/error.png": "/game1/static/media/error.6c9436c1.png"
+    "static/media/error.png": "/game1/static/media/error.6c9436c1.png",
+    "static/media/game.png": "/game1/static/media/game.5348ae3b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e3e546ce.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.f8239ed0.chunk.js",
-    "static/css/main.0f359f37.chunk.css",
-    "static/js/main.197b12f2.chunk.js"
+    "static/js/2.221fd9fa.chunk.js",
+    "static/css/main.79f244a2.chunk.css",
+    "static/js/main.0dd2e245.chunk.js"
   ]
 }
