@@ -10,6 +10,8 @@ import {
   JOIN_ROOM,
   JOIN_ROOM_SUCCESS,
   JOIN_ROOM_FAIL,
+  SET_ONLINE_OPTION,
+  START_GAME,
 } from "./tictac.action";
 
 const initialState = {};
@@ -65,7 +67,14 @@ const TictacReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case SET_ONLINE_OPTION:
+      return {
+        ...state,
+        onlineOption: action.payload,
+      };
     case RESET_GAME:
+      return { ...state };
+    case START_GAME:
       return { ...state };
     default:
       return state;

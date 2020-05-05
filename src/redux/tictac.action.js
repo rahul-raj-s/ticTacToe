@@ -9,6 +9,8 @@ const CREATE_ROOM_FAIL = "CREATE_ROOM_FAIL";
 const JOIN_ROOM = "JOIN_ROOM";
 const JOIN_ROOM_SUCCESS = "JOIN_ROOM_SUCCESS";
 const JOIN_ROOM_FAIL = "JOIN_ROOM_FAIL";
+const SET_ONLINE_OPTION = "SET_ONLINE_OPTION";
+const START_GAME = "START_GAME";
 
 const setMode = (state) => ({
   type: SET_MODE,
@@ -31,6 +33,10 @@ const joinRoom = (state) => ({
   type: JOIN_ROOM,
   payload: state,
 });
+const setOnlineOption = (state) => ({
+  type: SET_ONLINE_OPTION,
+  payload: state,
+});
 const setPlayer1 = (state) => ({ type: SET_PLAYER1, payload: state });
 
 export {
@@ -40,6 +46,7 @@ export {
   setPlayer2,
   createRoom,
   joinRoom,
+  setOnlineOption,
   CREATE_ROOM,
   CREATE_ROOM_SUCCESS,
   CREATE_ROOM_FAIL,
@@ -51,4 +58,6 @@ export {
   JOIN_ROOM,
   JOIN_ROOM_SUCCESS,
   JOIN_ROOM_FAIL,
+  SET_ONLINE_OPTION,
+  START_GAME,
 };

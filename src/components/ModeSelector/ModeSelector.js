@@ -17,7 +17,7 @@ function ModeSelector(props) {
   const { mode } = useSelector((state) => state.TictacReducer);
   const [loadingScreen, setLoadingScreen] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoadingScreen(false), 300);
+    const timer = setTimeout(() => setLoadingScreen(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 

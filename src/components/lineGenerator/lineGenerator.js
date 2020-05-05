@@ -1,5 +1,4 @@
 const getLine = (result) => {
-  console.log("result", result);
   if (JSON.stringify(result) === JSON.stringify([1, 2, 3])) {
     return { x1: 1, y1: 1, x2: 5, y2: 1 };
   } else if (JSON.stringify(result) === JSON.stringify([4, 5, 6])) {

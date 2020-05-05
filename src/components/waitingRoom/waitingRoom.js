@@ -1,12 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Clipboard } from "react-bytesize-icons";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { JOIN_ROOM_FAIL } from "../../redux/tictac.action";
+import {
+  JOIN_ROOM_FAIL,
+  START_GAME,
+  setPlayer2,
+} from "../../redux/tictac.action";
+import { changeRoute } from "../router/router.action";
+import firebase from "../../firebase";
 import style from "./waitingRoom.module.css";
 
 function WaitingRoom(props) {
-  const { gameId } = useSelector((state) => state.TictacReducer);
+  const { gameId, onlineOption } = useSelector((state) => state.TictacReducer);
   const textAreaRef = useRef(null);
   const { player1, player2, error } = useSelector(
     (state) => state.TictacReducer
@@ -20,6 +26,38 @@ function WaitingRoom(props) {
     e.target.focus();
     //setCopySuccess("Copied!");
   };
+
+  useEffect(() => {
+    try {
+      return firebase
+        .firestore()
+        .collection("gameStore")
+        .onSnapshot((snapshot) => {
+          for (let i = 0; i < snapshot.docs.length; i++) {
+            if (snapshot.docs[i].id === gameId) {
+              const newData = snapshot.docs[i].data();
+              if (onlineOption === "create") {
+                dispatch(setPlayer2(newData.player2));
+              } else if (onlineOption === "join" && newData.startGame) {
+                dispatch(changeRoute("game"));
+              }
+            }
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const startGame = () => {
+    if (player1 && player2) {
+      dispatch({ type: START_GAME, payload: gameId });
+      dispatch(changeRoute("game"));
+    } else {
+      console.log("Wait to join another player");
+    }
+  };
+
   return (
     <div className={style.waitingRoomCotainer}>
       {error && (
@@ -57,17 +95,21 @@ function WaitingRoom(props) {
             <span className={style.vsContainer}>VS</span>
             <span>{player2}</span>
           </div>
-          <button
-            className={style.startGameBtn}
-            onClick={() =>
-              dispatch({
-                type: JOIN_ROOM_FAIL,
-                payload: "We are working on this feature will availiable soon",
-              })
-            }
-          >
-            Start Game
-          </button>
+          {onlineOption === "create" && (
+            <button
+              className={style.startGameBtn}
+              onClick={startGame}
+              // onClick={() =>
+              //   dispatch({
+              //     type: JOIN_ROOM_FAIL,
+              //     payload: "We are working on this feature will availiable soon",
+              //   })
+              // }
+            >
+              Start Game
+            </button>
+          )}
+          {onlineOption === "join" && <div>{player1} will start the game</div>}
         </>
       )}
     </div>

@@ -10,6 +10,8 @@ import {
   JOIN_ROOM,
   JOIN_ROOM_SUCCESS,
   JOIN_ROOM_FAIL,
+  START_GAME,
+  setOnlineOption,
 } from "./tictac.action";
 
 export function* createRoom(action) {
@@ -23,12 +25,15 @@ export function* createRoom(action) {
         player1: player1,
         player2: "",
         status: intialStatus,
-        result: [],
-        gameCount: -1,
+        gameCount: {
+          result: [],
+          steps: -1,
+        },
       })
       .then((doc) => {
         store.dispatch({ type: CREATE_ROOM_SUCCESS, payload: doc.id });
       });
+    yield put(setOnlineOption("create"));
   } catch (error) {
     yield put({ type: CREATE_ROOM_FAIL, payload: error });
   }
@@ -59,6 +64,7 @@ export function* doJoinRoom(action) {
         store.dispatch({ type: JOIN_ROOM_FAIL, payload: "Invalid code" });
       }
     });
+    yield put(setOnlineOption("join"));
   } catch (error) {
     yield put({
       type: JOIN_ROOM_FAIL,
@@ -66,7 +72,31 @@ export function* doJoinRoom(action) {
     });
   }
 }
+
+export function* doStartGame(action) {
+  try {
+    const database = firebase
+      .firestore()
+      .collection("gameStore")
+      .doc(action.payload);
+    database.get().then((doc) => {
+      const data = doc.data();
+      if (data) {
+        try {
+          database.update({ startGame: true });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+    yield;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function* TictacSaga() {
   yield takeEvery(CREATE_ROOM, createRoom);
   yield takeEvery(JOIN_ROOM, doJoinRoom);
+  yield takeEvery(START_GAME, doStartGame);
 }

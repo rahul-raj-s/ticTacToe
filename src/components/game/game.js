@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { boxes, intialStatus } from "../../loader";
@@ -16,16 +17,20 @@ function Game(props) {
   const [gameCount, setGameCount] = useState({ result: [], steps: -1 });
   const [line, setLine] = useState(false);
   const dispatch = useDispatch();
-  // const database = firebase.firestore().collection("gameStore").doc(gameId);
-  const { player1, player2, mode, level, gameId } = useSelector(
+  const { player1, player2, mode, level, gameId, onlineOption } = useSelector(
     (state) => state.TictacReducer
   );
+  const database = gameId
+    ? firebase.firestore().collection("gameStore").doc(gameId)
+    : null;
+  // To calculate result
   useEffect(() => {
     if (gameCount.result.length > 0) {
       setLine(getLine(gameCount.result));
     }
   }, [gameCount.result.length]);
 
+  // Computer move
   useEffect(() => {
     if (
       mode === "PC" &&
@@ -34,61 +39,95 @@ function Game(props) {
       gameCount.steps < 9
     ) {
       let nextMove = computerPlayer(status, gameCount.steps, level);
-      setTimeout(() => setClick(nextMove), 100);
+      setTimeout(() => setClick(nextMove), 500);
     }
   }, [gameCount]);
+
   useEffect(() => {
     let response = gameChecker(status);
     if (response) {
-      setGameCount((prevGameCount) => ({ ...prevGameCount, result: response }));
+      if (mode === "OP") {
+        database.update({
+          gameCount: { ...gameCount, result: response },
+        });
+      } else {
+        setGameCount((prevGameCount) => ({
+          ...prevGameCount,
+          result: response,
+        }));
+      }
     } else {
-      setGameCount((prevGameCount) => ({
-        ...prevGameCount,
-        steps: prevGameCount.steps + 1,
-      }));
+      if (mode !== "OP") {
+        setGameCount((prevGameCount) => ({
+          ...prevGameCount,
+          steps: prevGameCount.steps + 1,
+        }));
+      }
     }
   }, [status]);
-  // useEffect(() => {
-  //   database.update({
-  //     player1: players.player1,
-  //     player2: players.player2,
-  //     status: status,
-  //   });
-  //   if (gameCount.result.length > 0) {
-  //     const win = status.term === "O" ? player2 : player1;
-  //     firebase.firestore().collection("gameStore").doc(gameId).update({
-  //       winner: win,
-  //     });
-  //   } else if (gameCount.steps >= 9) {
-  //     firebase
-  //       .firestore()
-  //       .collection("gameStore")
-  //       .doc(gameId)
-  //       .update({
-  //         winner: "Draw",
-  //       })
-  //       .then(console.log("update"));
-  //   }
-  // });
+
+  // To sync app with database
+  useEffect(() => {
+    if (mode === "OP") {
+      try {
+        return firebase
+          .firestore()
+          .collection("gameStore")
+          .onSnapshot((snapshot) => {
+            for (let i = 0; i < snapshot.docs.length; i++) {
+              if (snapshot.docs[i].id === gameId) {
+                const newData = snapshot.docs[i].data();
+                setStatus(newData.status);
+                setGameCount(newData.gameCount);
+              }
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, []);
+
   const setClick = (id) => {
     let newMove = [...status.opponentsMove];
     if (mode === "PC" && gameCount.steps % 2 === 0) {
       newMove = [...status.opponentsMove];
       newMove.push(id);
     }
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      [id]: prevStatus.term,
-      term: prevStatus.term === "O" ? "X" : "O",
-      opponentsMove: [...newMove],
-    }));
+    if (mode === "OP") {
+      database.get().then((doc) => {
+        const data = doc.data();
+        if (data) {
+          try {
+            database.update({
+              status: {
+                ...status,
+                [id]: status.term,
+                term: status.term === "O" ? "X" : "O",
+                opponentsMove: [...newMove],
+              },
+              gameCount: { ...gameCount, steps: gameCount.steps + 1 },
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      });
+    } else {
+      setStatus((prevStatus) => ({
+        ...prevStatus,
+        [id]: prevStatus.term,
+        term: prevStatus.term === "O" ? "X" : "O",
+        opponentsMove: [...newMove],
+      }));
+    }
   };
 
   const restartGame = () => {
     setStatus({ ...intialStatus, computersMove: [], opponentsMove: [] });
     setGameCount({ result: [], steps: -1 });
   };
-  console.log(line);
+
   return (
     <div className={style.gameContainer}>
       {!(gameCount.result.length > 0 || gameCount.steps >= 9) && (
@@ -109,17 +148,19 @@ function Game(props) {
           </div>
         </div>
       )}
-      <div
-        className={
-          gameCount.result.length > 0 || gameCount.steps >= 9
-            ? style.gameDetailsActive
-            : style.gameDetails
-        }
-      >
-        {gameCount.result.length > 0
-          ? `${status.term === "O" ? player2 : player1} win`
-          : gameCount.steps >= 9 && "Draw"}
-      </div>
+      {(gameCount.result.length > 0 || gameCount.steps >= 9) && (
+        <div
+          className={
+            gameCount.result.length > 0 || gameCount.steps >= 9
+              ? style.gameDetailsActive
+              : style.gameDetails
+          }
+        >
+          {gameCount.result.length > 0
+            ? `${status.term === "O" ? player2 : player1} win`
+            : gameCount.steps >= 9 && "Draw"}
+        </div>
+      )}
       <div className={style.svgContainer}>
         {gameCount.result.length > 0 && line && (
           <svg viewBox="0 0 6 6" className={style.line}>
@@ -142,7 +183,13 @@ function Game(props) {
               term={status[item]}
               gameLock={
                 gameCount.result.length > 0 ||
-                (mode === "PC" && gameCount.steps % 2 === 1)
+                (mode === "PC" && gameCount.steps % 2 === 1) ||
+                (mode === "OP" &&
+                  onlineOption === "join" &&
+                  (gameCount.steps % 2 === 1 || gameCount.steps === -1)) ||
+                (mode === "OP" &&
+                  onlineOption === "create" &&
+                  gameCount.steps % 2 === 0)
               }
               active={gameCount.result.includes(item)}
             />
