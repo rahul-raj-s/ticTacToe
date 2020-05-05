@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ef319092490801be6959478ef26e9f97",
+    "revision": "ac4144ca52afd10384f0a98170e2540a",
     "url": "/game1/index.html"
   },
   {
-    "revision": "de96bce31ea192524cf5",
+    "revision": "cc418d1ae0c9ffd1db2c",
     "url": "/game1/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "e9f01f3ffce3cbb3db52",
+    "revision": "965b0727ed00baa4063d",
     "url": "/game1/static/css/main.3ae4360d.chunk.css"
   },
   {
-    "revision": "de96bce31ea192524cf5",
-    "url": "/game1/static/js/2.221fd9fa.chunk.js"
+    "revision": "cc418d1ae0c9ffd1db2c",
+    "url": "/game1/static/js/2.bfc4a5e4.chunk.js"
   },
   {
     "revision": "88a28bf9811004a7250f8b652924c27d",
-    "url": "/game1/static/js/2.221fd9fa.chunk.js.LICENSE.txt"
+    "url": "/game1/static/js/2.bfc4a5e4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e9f01f3ffce3cbb3db52",
-    "url": "/game1/static/js/main.55a68a7b.chunk.js"
+    "revision": "965b0727ed00baa4063d",
+    "url": "/game1/static/js/main.a15f5127.chunk.js"
   },
   {
     "revision": "edec6057d97305a5888b",
