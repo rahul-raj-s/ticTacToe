@@ -28,7 +28,7 @@ function Game(props) {
     if (gameCount.result.length > 0) {
       setLine(getLine(gameCount.result));
     }
-  }, [gameCount.result.length]);
+  }, [gameCount.result]);
 
   // Computer move
   useEffect(() => {
@@ -46,7 +46,7 @@ function Game(props) {
   useEffect(() => {
     let response = gameChecker(status);
     if (response) {
-      if (mode === "OP") {
+      if (mode === "OP" && gameCount.result.length === 0) {
         database.update({
           gameCount: { ...gameCount, result: response },
         });
@@ -73,14 +73,11 @@ function Game(props) {
         return firebase
           .firestore()
           .collection("gameStore")
+          .doc(gameId)
           .onSnapshot((snapshot) => {
-            for (let i = 0; i < snapshot.docs.length; i++) {
-              if (snapshot.docs[i].id === gameId) {
-                const newData = snapshot.docs[i].data();
-                setStatus(newData.status);
-                setGameCount(newData.gameCount);
-              }
-            }
+            const newData = snapshot.data();
+            setStatus(newData.status);
+            setGameCount(newData.gameCount);
           });
       } catch (error) {
         console.log(error);
@@ -104,7 +101,6 @@ function Game(props) {
                 ...status,
                 [id]: status.term,
                 term: status.term === "O" ? "X" : "O",
-                opponentsMove: [...newMove],
               },
               gameCount: { ...gameCount, steps: gameCount.steps + 1 },
             });
@@ -127,7 +123,7 @@ function Game(props) {
     setStatus({ ...intialStatus, computersMove: [], opponentsMove: [] });
     setGameCount({ result: [], steps: -1 });
   };
-
+  console.log(gameCount.steps);
   return (
     <div className={style.gameContainer}>
       {!(gameCount.result.length > 0 || gameCount.steps >= 9) && (
@@ -148,7 +144,9 @@ function Game(props) {
           </div>
         </div>
       )}
-      {(gameCount.result.length > 0 || gameCount.steps >= 9) && (
+      {(gameCount.result.length > 0 ||
+        gameCount.steps >= 9 ||
+        (mode === "OP" && gameCount.steps >= 8)) && (
         <div
           className={
             gameCount.result.length > 0 || gameCount.steps >= 9
@@ -158,7 +156,9 @@ function Game(props) {
         >
           {gameCount.result.length > 0
             ? `${status.term === "O" ? player2 : player1} win`
-            : gameCount.steps >= 9 && "Draw"}
+            : (gameCount.steps >= 9 ||
+                (mode === "OP" && gameCount.steps >= 8)) &&
+              "Draw"}
         </div>
       )}
       <div className={style.svgContainer}>

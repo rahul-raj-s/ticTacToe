@@ -58,3 +58,7 @@
   background-color: #4dc767;
   border: none;
 }
+.msgContainer {
+  color: red;
+  text-align: center;
+}

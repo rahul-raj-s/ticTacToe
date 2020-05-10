@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import style from "./onlineOptions.module.css";
@@ -31,7 +32,7 @@ function OnlineOptions(props) {
     } else dispatch(joinRoom(localId));
   };
   return (
-    <>
+    <div className={style.outerModeContainer}>
       <div className={style.modeOptionContainer}>
         <div
           onClick={createGame ? () => {} : toggleMode}
@@ -106,7 +107,7 @@ function OnlineOptions(props) {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -47,7 +47,6 @@ export function* doJoinRoom(action) {
       .firestore()
       .collection("gameStore")
       .doc(action.payload);
-    console.log(state.p);
     database.get().then((doc) => {
       const data = doc.data();
       if (data) {

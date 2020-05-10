@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlayer1, setPlayer2 } from "../../redux/tictac.action";
+import { setPlayer1, setPlayer2, RESET_GAME } from "../../redux/tictac.action";
+import { Home } from "../../icons";
 import commonStyle from "../../commonStyle.module.css";
 import style from "./login.module.css";
 import { changeRoute } from "../router/router.action";
@@ -64,6 +65,16 @@ function Login(props) {
       <button onClick={setGame} variant="info" className={commonStyle.btn}>
         {mode === "OP" || mode === "PC" ? "Next" : "Start"}
       </button>
+      <div
+        variant="info"
+        className={commonStyle.dummyBotton}
+        onClick={() => {
+          dispatch({ type: RESET_GAME });
+          dispatch(changeRoute("home"));
+        }}
+      >
+        <img src={Home} alt="home" className={commonStyle.navIcon} />
+      </div>
     </div>
   );
 }

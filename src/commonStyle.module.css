@@ -64,3 +64,10 @@
   font-size: 1.6em;
   color: #489fb0;
 }
+.navIcon {
+  height: 20px;
+  width: 20px;
+}
+.dummyBotton:hover {
+  cursor: pointer;
+}

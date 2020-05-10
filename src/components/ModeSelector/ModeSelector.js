@@ -17,7 +17,7 @@ function ModeSelector(props) {
   const { mode } = useSelector((state) => state.TictacReducer);
   const [loadingScreen, setLoadingScreen] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoadingScreen(false), 3000);
+    const timer = setTimeout(() => setLoadingScreen(false), 30);
     return () => clearTimeout(timer);
   }, []);
 
@@ -54,6 +54,7 @@ function ModeSelector(props) {
           <Poster
             icon={<img src={ErrorReport} alt="" className={style.icon} />}
             mode="Report Error"
+            onClick={() => dispatch(changeRoute("msg"))}
           />
         </div>
       )}

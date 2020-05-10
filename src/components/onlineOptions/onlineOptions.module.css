@@ -6,9 +6,9 @@
   cursor: pointer;
 }
 .infoContainer {
-  background-color: #ffffff;
   display: flex;
   height: 100%;
+  width: 100%;
   padding: 10px;
   align-items: center;
   flex-direction: column;
@@ -35,4 +35,16 @@
 .modal-header {
   justify-content: flex-end;
   padding: 0;
+}
+.outerModeContainer {
+  height: 400px;
+  width: 90%;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(104, 38, 38, 0.19);
 }

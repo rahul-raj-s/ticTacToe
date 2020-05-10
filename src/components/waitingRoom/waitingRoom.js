@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useRef, useEffect, useState } from "react";
 import { Clipboard } from "react-bytesize-icons";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,6 +14,7 @@ import style from "./waitingRoom.module.css";
 
 function WaitingRoom(props) {
   const { gameId, onlineOption } = useSelector((state) => state.TictacReducer);
+  const [msg, setMsg] = useState();
   const textAreaRef = useRef(null);
   const { player1, player2, error } = useSelector(
     (state) => state.TictacReducer
@@ -54,7 +56,7 @@ function WaitingRoom(props) {
       dispatch({ type: START_GAME, payload: gameId });
       dispatch(changeRoute("game"));
     } else {
-      console.log("Wait to join another player");
+      setMsg("Wait till another player join");
     }
   };
 
@@ -74,7 +76,6 @@ function WaitingRoom(props) {
       )}
       {!error && (
         <>
-          {" "}
           <div className={style.roomCodeCotainer}>
             <span>
               Room Code:
@@ -96,20 +97,16 @@ function WaitingRoom(props) {
             <span>{player2}</span>
           </div>
           {onlineOption === "create" && (
-            <button
-              className={style.startGameBtn}
-              onClick={startGame}
-              // onClick={() =>
-              //   dispatch({
-              //     type: JOIN_ROOM_FAIL,
-              //     payload: "We are working on this feature will availiable soon",
-              //   })
-              // }
-            >
+            <button className={style.startGameBtn} onClick={startGame}>
               Start Game
             </button>
           )}
-          {onlineOption === "join" && <div>{player1} will start the game</div>}
+          {onlineOption === "join" && (
+            <div className={style.msgContainer}>
+              {player1} will start the game
+            </div>
+          )}
+          {!player2 && msg && <div className={style.msgContainer}>{msg}</div>}
         </>
       )}
     </div>

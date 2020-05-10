@@ -73,7 +73,7 @@ const TictacReducer = (state = initialState, action) => {
         onlineOption: action.payload,
       };
     case RESET_GAME:
-      return { ...state };
+      return {};
     case START_GAME:
       return { ...state };
     default:
