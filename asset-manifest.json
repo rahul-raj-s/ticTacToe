@@ -1,31 +1,31 @@
 {
   "files": {
-    "main.css": "/game1/static/css/main.0a500b66.chunk.css",
-    "main.js": "/game1/static/js/main.7106a678.chunk.js",
-    "main.js.map": "/game1/static/js/main.7106a678.chunk.js.map",
-    "runtime-main.js": "/game1/static/js/runtime-main.e3e546ce.js",
-    "runtime-main.js.map": "/game1/static/js/runtime-main.e3e546ce.js.map",
-    "static/css/2.de424728.chunk.css": "/game1/static/css/2.de424728.chunk.css",
-    "static/js/2.a6b5611d.chunk.js": "/game1/static/js/2.a6b5611d.chunk.js",
-    "static/js/2.a6b5611d.chunk.js.map": "/game1/static/js/2.a6b5611d.chunk.js.map",
-    "index.html": "/game1/index.html",
-    "precache-manifest.9c6e53afe9491b8fd5da5b197fd92b17.js": "/game1/precache-manifest.9c6e53afe9491b8fd5da5b197fd92b17.js",
-    "service-worker.js": "/game1/service-worker.js",
-    "static/css/2.de424728.chunk.css.map": "/game1/static/css/2.de424728.chunk.css.map",
-    "static/css/main.0a500b66.chunk.css.map": "/game1/static/css/main.0a500b66.chunk.css.map",
-    "static/js/2.a6b5611d.chunk.js.LICENSE.txt": "/game1/static/js/2.a6b5611d.chunk.js.LICENSE.txt",
-    "static/media/computer.png": "/game1/static/media/computer.feb9406b.png",
-    "static/media/connection.png": "/game1/static/media/connection.ad58a234.png",
-    "static/media/error.png": "/game1/static/media/error.6c9436c1.png",
-    "static/media/game.png": "/game1/static/media/game.5348ae3b.png",
-    "static/media/home.png": "/game1/static/media/home.b2d3c123.png",
-    "static/media/thankYou.png": "/game1/static/media/thankYou.ce0a5c7c.png"
+    "main.css": "/ticTacToe/static/css/main.0a500b66.chunk.css",
+    "main.js": "/ticTacToe/static/js/main.26af1f1a.chunk.js",
+    "main.js.map": "/ticTacToe/static/js/main.26af1f1a.chunk.js.map",
+    "runtime-main.js": "/ticTacToe/static/js/runtime-main.8d21d82b.js",
+    "runtime-main.js.map": "/ticTacToe/static/js/runtime-main.8d21d82b.js.map",
+    "static/css/2.de424728.chunk.css": "/ticTacToe/static/css/2.de424728.chunk.css",
+    "static/js/2.a6b5611d.chunk.js": "/ticTacToe/static/js/2.a6b5611d.chunk.js",
+    "static/js/2.a6b5611d.chunk.js.map": "/ticTacToe/static/js/2.a6b5611d.chunk.js.map",
+    "index.html": "/ticTacToe/index.html",
+    "precache-manifest.6498dd0468768a0d8c5b52a798474e3f.js": "/ticTacToe/precache-manifest.6498dd0468768a0d8c5b52a798474e3f.js",
+    "service-worker.js": "/ticTacToe/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/ticTacToe/static/css/2.de424728.chunk.css.map",
+    "static/css/main.0a500b66.chunk.css.map": "/ticTacToe/static/css/main.0a500b66.chunk.css.map",
+    "static/js/2.a6b5611d.chunk.js.LICENSE.txt": "/ticTacToe/static/js/2.a6b5611d.chunk.js.LICENSE.txt",
+    "static/media/computer.png": "/ticTacToe/static/media/computer.feb9406b.png",
+    "static/media/connection.png": "/ticTacToe/static/media/connection.ad58a234.png",
+    "static/media/error.png": "/ticTacToe/static/media/error.6c9436c1.png",
+    "static/media/game.png": "/ticTacToe/static/media/game.5348ae3b.png",
+    "static/media/home.png": "/ticTacToe/static/media/home.b2d3c123.png",
+    "static/media/thankYou.png": "/ticTacToe/static/media/thankYou.ce0a5c7c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e3e546ce.js",
+    "static/js/runtime-main.8d21d82b.js",
     "static/css/2.de424728.chunk.css",
     "static/js/2.a6b5611d.chunk.js",
     "static/css/main.0a500b66.chunk.css",
-    "static/js/main.7106a678.chunk.js"
+    "static/js/main.26af1f1a.chunk.js"
   ]
 }
